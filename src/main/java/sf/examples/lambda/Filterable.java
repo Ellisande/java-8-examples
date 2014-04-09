@@ -1,4 +1,4 @@
-package sf.examples.lamda;
+package sf.examples.lambda;
 
 @FunctionalInterface
 public interface Filterable<T> {

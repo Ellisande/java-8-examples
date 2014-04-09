@@ -12,12 +12,12 @@ import java.util.stream.Collectors;
 
 import org.junit.Test;
 
-import sf.examples.lamda.CallBacker;
-import sf.examples.lamda.FilterableList;
-import sf.examples.lamda.IntToStringTransformer;
-import sf.examples.lamda.MutableCar;
+import sf.examples.lambda.CallBacker;
+import sf.examples.lambda.IntToStringTransformer;
+import sf.examples.lambda.MutableCar;
+import sf.examples.lambda.PrintValues;
 
-public class LamdaTest {
+public class LambdaTest {
 
 	@Test
 	public void forEachClosure() {
@@ -52,23 +52,6 @@ public class LamdaTest {
 		CallBacker callback = new CallBacker();
 		callback.waitAndInvoke(sayWhat -> 
 			System.out.println("I said " + sayWhat));
-	}
-
-	@Test
-	public void filter() {
-		FilterableList<String> someStrings = new FilterableList<>();
-		someStrings.add("String1");
-		someStrings.add("String2");
-		someStrings.add("String3");
-
-		someStrings.filter(item -> {
-			if (item.equals("String1")) {
-				someStrings.remove(item);
-			}
-		});
-
-		System.out.println(someStrings);
-
 	}
 
 	@Test
@@ -115,12 +98,19 @@ public class LamdaTest {
 			doubleList.addAll(ints);
 			doubleList.addAll(ints);
 		};
-
-		System.out.println(doubleList);
-		Runnable printStuff = () -> callback.accept(ints);
 		
-		Thread thread = new Thread(printStuff);
+		Consumer<List<Integer>> add1000Callback = (list) -> {
+			doubleList.add(1000);
+		};
+
+		System.out.println("Intitial State: "+doubleList);
+		
+		
+		Runnable doubleTheList = () -> callback.andThen(add1000Callback).accept(ints);
+		
+		Thread thread = new Thread(doubleTheList);
 		thread.run();
+		System.out.println("Intermidiate State"+doubleList);
 		thread.join();
 
 		System.out.println("Finished state " + doubleList);
