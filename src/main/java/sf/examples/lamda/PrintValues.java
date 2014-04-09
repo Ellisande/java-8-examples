@@ -1,4 +1,4 @@
-package sf.examples;
+package sf.examples.lamda;
 
 import java.util.function.BiConsumer;
 
