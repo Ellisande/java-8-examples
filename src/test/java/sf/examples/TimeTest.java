@@ -26,7 +26,7 @@ import org.junit.Test;
  * Show date time formatter.
  * @param args
  */
-public class JavaTimeTest {
+public class TimeTest {
 	
 	Clock myZone = Clock.systemDefaultZone();
 	Clock dayLightSavings = Clock.fixed(Instant.parse("2014-03-09T07:00:00.00Z"), ZoneId.of("America/Chicago"));
@@ -36,6 +36,8 @@ public class JavaTimeTest {
 	public void localTimeTest(){
 		LocalTime now = LocalTime.now();
 		System.out.println("Current local time "+now);
+		Instant nowThen = Instant.now();
+		System.out.println(nowThen);
 	}
 	
 	@Test
