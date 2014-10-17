@@ -17,10 +17,6 @@ The project is Mavenized, so you'll need the Maven build plugin.
 
 http://maven.apache.org/
 
-### Eclipse IDE (Optional)
-
-If you are going to use Eclipse as your IDE of choice you will need the project Luna build I20140318-0830 or later. When I downloaded it that build was not in release, so you may have to grab a nightly or integration test build in order to get Java 8 support.
-
 
 ## Build the Project 
 
